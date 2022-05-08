@@ -4,7 +4,7 @@
 
 ### The E-commerce Back End application uses the MYSQL2 and Sequelize package to create the backend of an ecommerce business. You will also use the dotenv package to store more sensitive data such as the password to your database. The ecommerce backend will allow you to keep track of inventory for products.
 
-> [Video Link]()
+> [Video Link](https://drive.google.com/file/d/1V4SVBXxqd03vX27kxt_ceZPMeeCjUMSh/view)
 
 ## Location
 
