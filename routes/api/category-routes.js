@@ -6,40 +6,29 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   try{
     const categoryData = await Category.findAll({
-      include: [products]
+      include: [Product]
     });
     res.status(200).json(categoryData);
     // using first function from mini proj
   } catch (err) {
     res.status(500).json(err);
   }
-  // find all categories
-  // Category.findAll({
-  //   include: [products],
-  // })
-  // .then((categories ) => res.json(categories))
-  // .catch((err) => res.status(500).json(err));
-  // be sure to include its associated Products
+  
 });
 
-router.get('/:id', async (req, res) => {
-  try {
-    const categoryData = await Category.findByPk(req.params.id, {
-      // JOIN with travellers, using the Trip through table
-      include: [{ model: Category}]
-    });
-
-    if (!categoryData) {
-      res.status(404).json({ message: 'No location found with this id!' });
-      return;
-    }
-
-    res.status(200).json(categoryData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-  // find one category by its `id` value
+ // find one category by its `id` value
   // be sure to include its associated Products
+router.get('/:id', (req, res) => {
+  try {
+    const categoryData = Category.findByPk(req.params.id, {
+      // JOIN with travellers, using the Trip through table
+      include: [Product]
+    })
+    .then((categoryData) => res.status(200).json(categoryData));
+  } catch (err) {
+   res.status(500).json(err);
+  }
+
 });
 
 router.post('/', async (req, res) => {
@@ -88,7 +77,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(locationData);
+    res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
